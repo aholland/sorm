@@ -3,7 +3,7 @@ package sorm.jdbc
 import sorm._
 import core.SormException
 import java.sql.{ResultSet, PreparedStatement, Connection, Statement => JStatement}
-import org.joda.time._
+import java.time.{Instant, LocalDate, LocalTime}
 
 import sext._, embrace._
 
@@ -33,7 +33,7 @@ object `package` {
           case _ : Double     => DOUBLE
           case _ : LocalDate  => DATE
           case _ : LocalTime  => TIME
-          case _ : DateTime   => TIMESTAMP
+          case _ : Instant   => TIMESTAMP
           case null           => NULL
           case _              => throw new SormException("Value of unsupported type `" + v.getClass + "`: " + v)
         }

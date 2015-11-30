@@ -2,7 +2,7 @@ package sorm.driver
 
 import sorm._, ddl._, jdbc._
 import sext._, embrace._
-import org.joda.time.DateTime
+import java.time.Instant
 import sorm.core.SormException
 import sql.Sql
 
@@ -66,6 +66,6 @@ class Hsqldb (protected val connection : JdbcConnection)
     = connection
         .executeQuery(Statement("VALUES(NOW())"))()
         .head.head
-        .asInstanceOf[DateTime]
+        .asInstanceOf[Instant]
 
 }

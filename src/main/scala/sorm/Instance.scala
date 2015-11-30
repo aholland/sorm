@@ -40,8 +40,6 @@ class Instance
 
 object Instance {
 
-  import org.joda.time.DateTime
-
   trait Api extends Logging {
 
     protected val connector : Connector
@@ -177,12 +175,6 @@ object Instance {
      */
     def transaction [ T ] ( t : => T ) : T
       = connector.withConnection{ cx => cx.transaction(t) }
-
-    /**
-     * Current time at DB server in milliseconds. Effectively fetches the date only once to calculate the deviation.
-     */
-    @deprecated ("now().getMillis should be used instead")
-    def nowMillis() = now().getMillis
 
     /**
      * Current DateTime at DB server. Effectively fetches the date only once to calculate the deviation.

@@ -1,6 +1,7 @@
 package sorm.jdbc
 
 import java.sql._
+import java.time.Instant
 
 import sorm._
 import joda.Extensions._
@@ -76,9 +77,9 @@ class ResultSetView
             }
         if( rs.wasNull() ) null
         else r match {
-          case r : java.sql.Date => r.toJoda
-          case r : java.sql.Time => r.toJoda
-          case r : java.sql.Timestamp => r.toJoda
+          case r : java.sql.Date => r.toLocalDate
+          case r : java.sql.Time => r.toLocalTime
+          case r : java.sql.Timestamp => Instant.ofEpochMilli(r.getTime)
           case _ => r
         }
       }
